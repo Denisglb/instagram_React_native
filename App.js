@@ -11,11 +11,13 @@ import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import LandingScreen from "./components/auth/Landing";
-import RegisterScreen from "./components/auth/Register";
 import { View, Text } from "react-native";
 import * as firebase from 'firebase';
-
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux'
+import rootReducer from './redux/reducers'
+import thunk from 'redux-thunk'
+const store = createStore(rootReducer, applyMiddleware(thunk))
 
 const firebaseConfig = {
   apiKey: APIKEY,
@@ -30,6 +32,10 @@ const firebaseConfig = {
 if (firebase.apps.length === 0) {
   firebase.initializeApp(firebaseConfig)
 }
+
+import LandingScreen from "./components/auth/Landing";
+import RegisterScreen from "./components/auth/Register";
+import MainScreen from './components/Main'
 
 const Stack = createStackNavigator();
 
@@ -74,16 +80,20 @@ export class App extends Component {
           <Stack.Navigator initialRouteName="Landing">
             <Stack.Screen name='Landing' component={LandingScreen} options={{ headerShown: false }}></Stack.Screen>
             <Stack.Screen name='Register' component={RegisterScreen} options={{ headerShown: false }}></Stack.Screen>
-            {/* <Stack.Screen name= 'Login' component ={LoginScreen} options ={{headerShown: false}}></Stack.Screen> */}
+            <Stack.Screen name='Login' component={LoginScreen} options={{ headerShown: false }}></Stack.Screen>
           </Stack.Navigator>
         }</NavigationContainer>
       );
     }
 
     return (
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        <Text>User is Logged in </Text>
-      </View>
+      <Provider store={store}>
+        <NavigationContainer>{
+          <Stack.Navigator initialRouteName="Main">
+            <Stack.Screen name='Main' component={MainScreen} options={{ headerShown: false }}></Stack.Screen>
+          </Stack.Navigator>
+        }</NavigationContainer>
+      </Provider>
     )
   }
 
