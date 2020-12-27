@@ -1,21 +1,30 @@
+import {
+  APIKEY,
+  AUTHDOMAIN,
+  PROJECTID,
+  STORAGEBUCKET,
+  MESSAGINGSENDERID,
+  APPID,
+  MEASUREMENTID
+} from '@env'
 import { StatusBar } from 'expo-status-bar';
 import React, { Component } from 'react'
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import LandingScreen from "./components/auth/Landing";
 import RegisterScreen from "./components/auth/Register";
-import LoginScreen from "./components/auth/Login";
 import { View, Text } from "react-native";
 import * as firebase from 'firebase';
 
+
 const firebaseConfig = {
-  apiKey: "AIzaSyALPwRcJbvuBDxONIBl6zxz38eTmucQFaA",
-  authDomain: "instagram-demo-d2ba3.firebaseapp.com",
-  projectId: "instagram-demo-d2ba3",
-  storageBucket: "instagram-demo-d2ba3.appspot.com",
-  messagingSenderId: "46952580953",
-  appId: "1:46952580953:web:2b4b68b98ded259065ae48",
-  measurementId: "G-HVQBH4MHL7"
+  apiKey: APIKEY,
+  authDomain: AUTHDOMAIN,
+  projectId: PROJECTID,
+  storageBucket: STORAGEBUCKET,
+  messagingSenderId: MESSAGINGSENDERID,
+  appId: APPID,
+  measurementId: MEASUREMENTID
 };
 
 if (firebase.apps.length === 0) {
