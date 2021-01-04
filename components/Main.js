@@ -7,35 +7,24 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { fetchUser } from '../redux/action/index'
 
-import FeedScreen  from "./main/feed";
+import { Ionicons } from '@expo/vector-icons';
+
+import FeedScreen from "./main/feed";
 
 const Tab = createBottomTabNavigator();
 
 export class Main extends Component {
-    componentDidMount() {
-        this.props.fetchUser();
-
-    }
     render() {
-        const { currentUser } = this.props;
-
-        console.log(currentUser)
-        if (currentUser == undefined) {
-            return (
-                <View></View>
-            )
-        }
         return (
-            <View style={{ flex: 1, justifyContent: 'center' }}>
-                <Text>{currentUser.name} is Logged in </Text>
-            </View>
+            <Tab.Navigator>
+                <Tab.Screen name=" Home " component={FeedScreen}
+                    options={{
+                        tabBarIcon: ({ color, size }) => (
+                            <Ionicons name="home" size={32} color="blue" />
+                        ),
+                    }} />
+            </Tab.Navigator>
         )
-        
-        // return (
-        //     <Tab.Navigator>
-        //         <Tab.Screen name="Feed" component={FeedScreen} />
-        //     </Tab.Navigator>
-        // )
     }
 }
 
