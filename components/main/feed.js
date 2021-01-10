@@ -2,13 +2,11 @@ import React, { Component } from 'react'
 
 
 import { SafeAreaView, StyleSheet, View, Text } from 'react-native';
-
+import firebase from 'firebase';
 //import Card
 import { Card } from 'react-native-elements';
 
-
 export default function feed() {
-
     return (
         <View style={styles.container}>
             <Card title="Local Modules">
@@ -20,6 +18,8 @@ export default function feed() {
         </View>
     )
 }
+
+
 
 const styles = StyleSheet.create({
     container: {

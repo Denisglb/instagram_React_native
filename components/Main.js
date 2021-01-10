@@ -9,7 +9,7 @@ import { fetchUser } from '../redux/action/index'
 
 import { Ionicons } from '@expo/vector-icons';
 
-import FeedScreen from "./main/feed";
+import { Questions } from "./main/Questions"
 
 const Tab = createBottomTabNavigator();
 
@@ -17,7 +17,7 @@ export class Main extends Component {
     render() {
         return (
             <Tab.Navigator>
-                <Tab.Screen name=" Home " component={FeedScreen}
+                <Tab.Screen name=" Home " component={Questions}
                     options={{
                         tabBarIcon: ({ color, size }) => (
                             <Ionicons name="home" size={32} color="blue" />
